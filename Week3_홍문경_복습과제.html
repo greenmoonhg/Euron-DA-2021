@@ -1,0 +1,786 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>핸즈온 머신러닝 3주차</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a8a5a1b0-9486-4986-96c0-5c4ab415e3e1" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🚀</span></div><h1 class="page-title">핸즈온 머신러닝 3주차</h1></header><div class="page-body"><ul id="f737a318-8afa-4193-ab46-743e16675007" class="toggle"><li><details open=""><summary>4.1 선형회귀</summary><p id="5ea6f1f3-8293-4ed2-84cb-07f67c564960" class=""><strong>모델 훈련</strong>
+= 모델이 훈련 세트에 가장 잘 맞도록 모델 파라미터를 설정
+→ <strong>RMSE 를 최소화</strong> 하는 파라미터를 찾아야 </p><p id="7a7470f1-f432-4012-a769-6dd63a33382d" class="">
+</p><pre id="48a0dd9e-24de-4bc7-95a0-1d184f34751f" class="code"><code>from sklearn.linear_model import LinearRegression
+
+lin_reg = LinearRegression()
+lin_reg.fit(X, y)
+lin_reg.intercept_, lin_reg.coef_</code></pre><p id="b6ba1069-d955-42dd-a804-62fcd44c1460" class="">
+</p><ul id="de1d3125-5d20-4f41-b8e8-614895616b4f" class="bulleted-list"><li>유사역행렬을 이용한 계산<figure id="1ecf840d-f64e-4993-b111-4170c27837e2" class="image"><a href="%E1%84%92%E1%85%A2%E1%86%AB%E1%84%8C%E1%85%B3%E1%84%8B%E1%85%A9%E1%86%AB%20%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%203%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%201ecf840df64e4993b1114170c27837e2/Untitled.png"><img style="width:108px" src="%E1%84%92%E1%85%A2%E1%86%AB%E1%84%8C%E1%85%B3%E1%84%8B%E1%85%A9%E1%86%AB%20%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%203%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%201ecf840df64e4993b1114170c27837e2/Untitled.png"/></a></figure></li></ul><pre id="fae999ad-a531-4234-95f2-21fded700a45" class="code"><code>np.linalg.pinv(X_b).dot(y)</code></pre><p id="d9fefa97-af51-41f9-8716-d7326f345787" class="">어떤 특성이 중복되어 행렬 X&#x27;X의 역행렬이 없다면(특이행렬이라면) 정규방정식 작동 X,
+but, 유사역행렬은 항상 구할 수 O</p><p id="6970b586-f0fc-41f3-bc79-06d2f2b0e3a8" class="">
+</p></details></li></ul><ul id="356dd35d-7191-4971-b354-ead451cbb4d9" class="toggle"><li><details open=""><summary>4.2 경사 하강법</summary><p id="1fa6e709-9a98-4c26-953b-3015c6ec65b0" class=""><mark class="highlight-brown_background"><strong>비용 함수 최소화를 위한 반복적 파라미터 조정</strong></mark></p><ul id="0d9eb0b3-8f97-468d-9b4e-48e2a3fd7711" class="bulleted-list"><li>파라미터에 대한 비용 함수의 현재 그레디언트 계산 후</li></ul><ul id="b7380c9c-c27e-460b-98c2-860cd1f81d45" class="bulleted-list"><li>그레디언트 감소하는 방향으로 진행
+: 그레디언트 0 도달 → 최소값에 도달한 것</li></ul><p id="a4d7a3b8-5a71-4dd8-a4af-483ee2faead7" class=""><mark class="highlight-brown_background"><strong>스텝의 크기**</strong></mark></p><ul id="73ecf0e2-465a-47e2-b83a-b04fffe865c9" class="bulleted-list"><li>학습률 하이퍼파라미터로 결정됨
+: <strong>학습률</strong>이 너무 <strong>작</strong>으면 → 알고리즘 수렴 위한 <strong>반복</strong> 많아져 → 시간이 <strong>오래</strong> 걸려
+: <strong>학습률</strong>이 너무 <strong>크</strong>면 <strong>이전 보다 높은 곳으로 올라갈 수 있는 위험</strong> 존재</li></ul><p id="4dd32d53-e34f-478f-8a03-8bb9cfbb8085" class=""><mark class="highlight-brown_background"><strong>선형 회귀를 위한 MSE 비용 함수</strong></mark><mark class="highlight-blue_background">
+</mark>: 다행히 볼록 함수
+: 지역 최소값 X, 하나의 전역 최솟값만 존재
+: 경사 하강법을 통해 전역 최솟값에 가깝게 접근 보장</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="bba6471f-82d6-449a-86e0-d85c05cb3346"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">경사하강법  사용 시 모든 특성이 같은 스케일을 갖도록 만들어야 
+ex. 사이킷런의 StandardScaler, 그렇지 않으면 수렴하는 데 오래 걸려</div></figure><ul id="e6fab0f5-040c-4358-ab1f-a0a5da44a91c" class="toggle"><li><details open=""><summary><span style="border-bottom:0.05em solid">배치 경사 하강법</span></summary><p id="89cbec7e-fba1-4845-b986-de446c780067" class=""><span style="border-bottom:0.05em solid"><strong>편도함수</strong></span>
+파라미터가 조금 변경될 때 비용 함수가 얼마나 바뀌는 지 계산
+→ 매 경사 하강법 스템에서 전체 훈련 세트에 대해 계산
+→ <mark class="highlight-yellow_background">큰 훈련 세트에서 아주 느려</mark>
+→ But,<mark class="highlight-yellow_background"> 특성 수에 민감하지는 X</mark>
+→ 수십만 개의 특성에서 선형 회귀 훈련 : 경사하강법이 정규방정식이나 SVD분해보다 빨라</p><pre id="2903afc0-1da0-4831-ad90-874802ed079a" class="code"><code>eta = 0.1 # 학습률
+n_iterations = 1000
+m = 100
+
+theta = np.random.randn(2,1)
+
+for iteration in range(n_iterations):
+    gradients = 2/m * X_b.T.dot(X_b.dot(theta)-y)
+    theta = theta - eta*gradients</code></pre><p id="963cacbf-8b5a-4e03-bbef-8ae77476c48d" class="">적절한 학습률 찾기 위해 → 그리드 탐색
+반복 횟수를 아주 크게 지정하고 그레디언트 벡터가 아주 작아지면,
+즉 벡터의 노름이 허용오차보다 작아지면 알고리즘을 중지</p></details></li></ul><ul id="c0474da6-a8f2-4506-8f31-57c14ed8bd18" class="toggle"><li><details open=""><summary><span style="border-bottom:0.05em solid">확률적 경사 하강법</span></summary><p id="63055d45-8dbe-46ce-950a-233a1eac6514" class=""><mark class="highlight-gray_background">배치 경사 하강법의 단점 개선</mark>
+배치 경사 하강법은 매 스텝에서 전체 훈련 세트 사용해 그레디언트 계산해
+훈련 세트가 커지면 매우 느려져
+</p><p id="f21aa7e1-9ad2-40f5-9e89-c0e78c250fc7" class="">확률적 경사 하강법은,
+매 스텝에서 <mark class="highlight-red"><strong>한 개의 샘플을 무작위 선택</strong></mark> 후 하나의 샘플에 대한 그레디언트 계산</p><p id="68bfcca2-39cb-48f5-8001-f772d5f4a286" class="">
+장점</p><ul id="2ff89f48-8a52-4bdb-bcd9-8d4d43d1d3ad" class="bulleted-list"><li>매 반복에서 다뤄야 할 데이터 수 감소 → 속도 빨라</li></ul><ul id="7b9ea3de-0a6e-40f8-9853-7e19738d5fc3" class="bulleted-list"><li>지역 최소값 건너뛰도록 도와줘 전역 최소값을 찾을 가능성 높아</li></ul><p id="8305483d-a68e-41c0-b51f-3bf0cb160a0b" class="">단점</p><ul id="f2808916-33cc-4745-9f03-ee508ec18cbb" class="bulleted-list"><li>확률적, 무작위 이므로 배치경사 하강법 보다 불안정</li></ul><ul id="4d8c6768-750c-499a-b502-02b52607085f" class="bulleted-list"><li>비용함수가 최솟값에 근접하겠지만, 파라미터가 최적치 X </li></ul><p id="73d98593-bff8-48ba-91ba-6f84e2866e08" class="">무작위성의 딜레마</p><ul id="9d43b888-0e96-4146-9d23-608297c7bdf4" class="bulleted-list"><li>지역 최솟값에서 탈출시켜준다는 긍정적 부분</li></ul><ul id="c776f1e1-98db-4327-9f6f-b78af1325b87" class="bulleted-list"><li>알고리즘을 전역 최솟값에 다다르지 못한다는 한계</li></ul><p id="d0a5157c-a167-43b2-aed8-bb9a1c1a9801" class="">해결방법</p><ul id="f3fd318b-b89b-4847-a6a5-f086c67ab771" class="bulleted-list"><li>학습률의 점진적 감소
+: 시작할 때는 학습률을 크게 하고 점차 줄여 지역 최솟값에 도달하게 학습스케줄 설정</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e48547a5-8ea6-4e51-8e14-372563c8726f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">확률적 경사 하강법은 훈련 샘플이 IID여야 전역 최적점을 향해 진행한다고 보장 
+이를 위해 훈련하는 동안 샘플을 섞는 것을 추천</div></figure><pre id="24b85365-8ce9-4d5f-ad47-467518c4db60" class="code"><code>n_epochs = 50
+t0,t1 = 5, 50
+
+def learning_schedule(t):
+    return t0/(t+t1)
+theta = np.random.rand(2,1)
+
+for epoch in range(n_epochs):
+    for i in range(m):
+        random_index = np.random.randint(m)
+        xi=X_b[random_index:random_index+1]
+        yi=y[random_index:random_index+1]
+        gradients=2*xi.T.dot(xi.dot(theta)-yi)
+        eta=learning_schedule(epoch*m+i)
+        theta=theta-eta*gradients</code></pre><ul id="48e602ca-6131-4d11-8501-c1061430574e" class="bulleted-list"><li>사이킷런의 SGD 방식</li></ul><pre id="3daff500-31b9-48f6-9272-11bfbeb032f9" class="code"><code>from sklearn.linear_model import SGDRegressor
+
+sgd_reg = SGDRegressor(max_iter=1000, tol=1e-3, penalty=None, eta0=0.1, random_state=42)
+sgd_reg.fit(X, y.ravel())
+
+sgd_reg.intercept_, sgd_reg.coef_</code></pre></details></li></ul><ul id="d77f3f0e-2f68-4b9f-902e-cfeca22cd583" class="toggle"><li><details open=""><summary><span style="border-bottom:0.05em solid">미니배치 경사 하강법</span></summary><p id="de90e1bb-51c9-4d56-b371-fc2f04be5a27" class="">미니배치 (임의의 작은 샘플 세트)에 대해 그레디언트 계산</p><ul id="ca34411a-79fb-489d-b90a-4d16cf4193ea" class="bulleted-list"><li>장점 : 행렬 연산에 최적화된 하드웨어, 특히 GPU를 사용해서 얻는 성능향상</li></ul><ul id="7893a9bd-b0cd-4902-b2d9-9ca6c798ee2e" class="bulleted-list"><li>미니배치를 크게 하면 SGD보다 덜 불규칙적
+→ SGD보다 초ㅚ솟값에 더 가까이 도달</li></ul><ul id="53cecec5-2b00-4422-ad8d-7b00edea668d" class="bulleted-list"><li>But, 지역 최솟값에서 빠져나오기는 더 힘들 수 </li></ul></details></li></ul><p id="f1cf8223-d4a2-4d85-8d6c-7ad2857c79d4" class="">
+</p></details></li></ul><ul id="3ee4824a-3315-41b6-83a9-0788c702d3a8" class="toggle"><li><details open=""><summary>4.3 다항 회귀</summary><pre id="5715e7a9-b7c2-4a04-a331-573c4b65830f" class="code"><code>from sklearn.preprocessing import PolynomialFeatures
+poly_features = PolynomialFeatures(degree=2, include_bias=False) # 2차원
+X_poly =poly_features.fit_transform(X) # 각 특성을 제곱하여 새로운 특성으로 추가
+lin_reg=LinearRegression()
+lin_reg.fit(X_poly,y)
+lin_reg.intercept_,lin_reg.coef_</code></pre><p id="37929596-5c51-4cc9-ad06-43a2fc312125" class="">
+</p></details></li></ul><ul id="d5bbd8e0-4b62-4600-9908-f8ca726b7402" class="toggle"><li><details open=""><summary>4.4 학습 곡선</summary><p id="bef2d6da-34da-4b8f-a500-4f3fc475d92d" class="">모델의 적합성 살펴보는 방법 ( 과대적합, 과소적합)</p><ol id="42a78ded-356b-4334-81b6-7ec24034d85b" class="numbered-list" start="1"><li>교차 검증
+훈련 데이터에서 성능이 좋지만 교차 검증 점수가 낮으면 모델이 과대적합된 것
+양쪽이 좋지 않으면 과소 적합된 것</li></ol><ol id="a826827e-e291-450e-a7be-6be56350867f" class="numbered-list" start="2"><li>학습 곡선 
+훈련세트와 검증세트의 모델 성능을 <strong>훈련세트크기의 함수</strong>로 나타내
+→ 훈련세트에서 크기가 다른 서브세트를 만들어 모델을 여러 번 훈련시켜<ul id="6a0980c4-80c8-4532-98e3-925d5168d348" class="bulleted-list"><li>선형 회귀 모델의 학습곡선</li></ul><pre id="bbaaf475-c6f8-410b-a97a-075208779050" class="code"><code>from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
+
+def plot_learning_curves(model, X, y):
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=10)
+    train_errors, val_errors = [], []
+    for m in range(1, len(X_train)):
+        model.fit(X_train[:m], y_train[:m])
+        y_train_predict = model.predict(X_train[:m])
+        y_val_predict = model.predict(X_val)
+        train_errors.append(mean_squared_error(y_train[:m], y_train_predict))
+        val_errors.append(mean_squared_error(y_val, y_val_predict))
+
+    plt.plot(np.sqrt(train_errors), &quot;r-+&quot;, linewidth=2, label=&quot;train&quot;)
+    plt.plot(np.sqrt(val_errors), &quot;b-&quot;, linewidth=3, label=&quot;val&quot;)
+    plt.legend(loc=&quot;upper right&quot;, fontsize=14)   # 책에는 없음
+    plt.xlabel(&quot;Training set size&quot;, fontsize=14) # 책에는 없음
+    plt.ylabel(&quot;RMSE&quot;, fontsize=14)              # 책에는 없음
+
+lin_reg = LinearRegression()
+plot_learning_curves(lin_reg, X, y)
+plt.axis([0, 80, 0, 3])                         # 책에는 없음
+save_fig(&quot;underfitting_learning_curves_plot&quot;)   # 책에는 없음
+plt.show()</code></pre><ul id="2f64dfb4-ebf8-4c78-b68a-7b7e896240a3" class="bulleted-list"><li>10차 다항 회귀 모델의 학습 곡선</li></ul><pre id="235586d6-03d5-4184-b532-6ac48aab1947" class="code"><code>from sklearn.pipeline import Pipeline
+
+
+polynomial_regression = Pipeline([
+    (&quot;poly_features&quot;,PolynomialFeatures(degree=10,include_bias=False)),
+    (&quot;lin_reg&quot;,LinearRegression()),
+])
+
+plot_learning_curves(polynomial_regression,X,y)</code></pre><figure id="2a9f5ea3-7dc4-4816-867a-2f2533e6c4ae" class="image"><a href="%E1%84%92%E1%85%A2%E1%86%AB%E1%84%8C%E1%85%B3%E1%84%8B%E1%85%A9%E1%86%AB%20%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%203%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%201ecf840df64e4993b1114170c27837e2/Untitled%201.png"><img style="width:1018px" src="%E1%84%92%E1%85%A2%E1%86%AB%E1%84%8C%E1%85%B3%E1%84%8B%E1%85%A9%E1%86%AB%20%E1%84%86%E1%85%A5%E1%84%89%E1%85%B5%E1%86%AB%E1%84%85%E1%85%A5%E1%84%82%E1%85%B5%E1%86%BC%203%E1%84%8C%E1%85%AE%E1%84%8E%E1%85%A1%201ecf840df64e4993b1114170c27837e2/Untitled%201.png"/></a><figcaption>1. 훈련 데이터의 오차가 선형 모델보다 훨씬 낮다.
+2. 두 곡선 사이에 공간 존재, 모델 성능이 검증데이터보다 훨씬 낫다는 뜻이고 과대적합 모델의 특징
+    → 더 큰 훈련 세트를 사용하면 두 곡선이 점점 가까워진다. </figcaption></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="da036e04-607d-43d9-baaf-b512231c5aaa"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"> 과대적합 모델을 개선하는 한 가지 방법은 
+검증 오차가 훈련 오차에 근접할 때까지 <strong>더 많은 훈련 데이터를 추가</strong>하는 것</div></figure><p id="c57ce7a9-3216-4b50-9c0f-8f8962a8af4b" class="">
+</p></li></ol></details></li></ul><ul id="8513ee84-f70a-4c72-9409-3980adb53b02" class="toggle"><li><details open=""><summary>4.5 규제가 있는 선형 모델</summary><p id="ba1be946-f953-47c3-ac31-1c28fdac08f7" class="">과대 적합 감소시키는 좋은 방법 : 모델 규제
+→ 자유도 줄여,다항식의 차수를 감소</p><ul id="4ded263a-d4e4-43f3-9e9b-d0eb80707712" class="toggle"><li><details open=""><summary><mark class="highlight-brown_background">선형 회귀 모델에서는 </mark><mark class="highlight-brown_background"><span style="border-bottom:0.05em solid"><strong>모델의 가중치를 제한
+</strong></span></mark>→ 다항회귀도 선형회귀모델과 똑같이 적용됨</summary><p id="07ecb140-d986-48db-b848-eb785519c6a8" class="">기본 : 릿지
+<mark class="highlight-blue">쓰이는 특성이 몇 개 뿐일때</mark> → <strong>라소</strong>나 <strong>엘라스틱 넷</strong>이 better
+<mark class="highlight-blue">특성 수 &gt; 훈련 샘플 수, 특성 몇 개가 강하게 연관</mark> → <strong>엘라스틱넷</strong></p><ul id="dfcd4160-0617-4aa2-be6b-5dbfa3f236b0" class="toggle"><li><details open=""><summary><strong>릿지 회귀</strong></summary><p id="0dd3cc15-eacb-405c-bbe7-ff55ceb407c2" class="">α : 모델의 규제 정도
+α=0 선형회귀, α값 아주 크면 가중치 거의 0</p><p id="c06fa3e3-c1e1-4810-8a5f-ed8040487c09" class="">
+</p><p id="d4ac0be5-cfc4-4ff2-b863-8a8c67402eb9" class="">릿지회귀를 계산하기 위해 1. 정규 방정식 2. 경사 하강법</p><ul id="cc879c83-66c7-4f71-a8e0-906c4e9e298b" class="bulleted-list"><li>정규방정식<pre id="14cbd41b-54c1-4cb2-95a2-496fe66e70b8" class="code"><code>from sklearn.linear_model import Ridge
+ridge_reg = Ridge(alpha=1, solver=&quot;cholesky&quot;, random_state=42)
+ridge_reg.fit(X, y)
+ridge_reg.predict([[1.5]])</code></pre></li></ul><ul id="2677063f-cb45-40e8-b881-7f6d0065fc98" class="bulleted-list"><li>경사하강법<pre id="fe92ce12-83c6-4ac0-9bfb-8161c166dc66" class="code"><code>sgd_reg = SGDRegressor(penalty=&quot;l2&quot;, max_iter=1000, tol=1e-3, random_state=42)
+sgd_reg.fit(X, y.ravel())
+sgd_reg.predict([[1.5]])</code></pre></li></ul></details></li></ul><ul id="a8a50785-af4d-447d-b117-d85e4d507298" class="toggle"><li><details open=""><summary><strong>라쏘 회귀</strong></summary><ul id="2907a647-207a-44d0-a961-ddaf5bd29656" class="bulleted-list"><li>덜 중요한 특성의 가중치를 제거
+→ 자동으로 특성 선택하고 희소모델 생성</li></ul><pre id="860728bb-a2d9-4846-ba16-9d4be0c3ee39" class="code"><code>from sklearn.linear_model import Lasso
+lasso_reg = Lasso(alpha=0.1)
+lasso_reg.fit(X, y)
+lasso_reg.predict([[1.5]])</code></pre></details></li></ul><ul id="8b29898f-4eeb-4e93-bda9-89bcb39f4a3e" class="toggle"><li><details open=""><summary><strong>엘라스틱넷</strong></summary><p id="cbd1508d-3212-4cd4-a20d-08a06f3e4de5" class="">릿지와 라쏘 회귀 절충 모델</p><p id="4fe25b3a-1daa-43d8-890e-02fb108fed7e" class="">r=0 이면 릿지회귀, r=1이면 라쏘 회귀</p><pre id="d266151c-9d19-4044-bc47-05b76b43007c" class="code"><code>from sklearn.linear_model import ElasticNet
+elastic_net = ElasticNet(alpha=0.1, l1_ratio=0.5, random_state=42)
+elastic_net.fit(X, y)
+elastic_net.predict([[1.5]])</code></pre></details></li></ul><ul id="cfd91444-df61-48b8-a152-8cb40c703e1b" class="toggle"><li><details open=""><summary><strong>조기종료</strong></summary><p id="d13ded7a-b08c-42f0-919d-dda955f7f560" class="">경사하강법 같은 반복적 학습 알고리즘을 규제
+<mark class="highlight-red"><strong>검증 에러가 최솟값에 도달하면 훈련 정지</strong></mark></p><pre id="ef9e60bd-ae4a-45ae-8cb1-97d0f3ef337d" class="code"><code>np.random.seed(42)
+m = 100
+X = 6 * np.random.rand(m, 1) - 3
+y = 2 + X + 0.5 * X**2 + np.random.randn(m, 1)
+
+X_train, X_val, y_train, y_val = train_test_split(X[:50], y[:50].ravel(), test_size=0.5, random_state=10)
+
+
+from sklearn.preprocessing import StandardScaler
+from copy import deepcopy
+
+poly_scaler = Pipeline([
+        (&quot;poly_features&quot;, PolynomialFeatures(degree=90, include_bias=False)),
+        (&quot;std_scaler&quot;, StandardScaler())
+    ])
+
+X_train_poly_scaled = poly_scaler.fit_transform(X_train)
+X_val_poly_scaled = poly_scaler.transform(X_val)
+
+sgd_reg = SGDRegressor(max_iter=1, tol=-np.infty, warm_start=True,
+                       penalty=None, learning_rate=&quot;constant&quot;, eta0=0.0005, random_state=42)
+
+minimum_val_error = float(&quot;inf&quot;)
+best_epoch = None
+best_model = None
+
+
+for epoch in range(1000):
+    sgd_reg.fit(X_train_poly_scaled, y_train)  # 중지된 곳에서 다시 시작합니다
+    y_val_predict = sgd_reg.predict(X_val_poly_scaled)
+    val_error = mean_squared_error(y_val, y_val_predict)
+    if val_error &lt; minimum_val_error:
+        minimum_val_error = val_error
+        best_epoch = epoch
+        best_model = deepcopy(sgd_reg)</code></pre></details></li></ul></details></li></ul></details></li></ul><p id="bf88ba88-f5bd-49ab-9f77-ba00926c7c9d" class="">
+</p></div></article></body></html>
